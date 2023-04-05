@@ -1,3 +1,4 @@
+// Online C compiler to run C program online
 #include<stdio.h>
 #include<stdlib.h>
 struct node{
@@ -21,13 +22,13 @@ void printlist(struct node * head)
     }
 }
 
-struct node * at_beg(struct node * head, int ndata)
+void at_beg(struct node ** head, int ndata)
 {
     struct node * n_node = (struct node *)malloc(sizeof(struct node));
     n_node->data = ndata;
-    n_node->link = head;
-    head = n_node;
-    return head;
+    n_node->link = *head;
+    *head = n_node;
+    //return head;
 }
 int main()
 {
@@ -51,8 +52,8 @@ int main()
     printf("%d\n", head->link->link->data);
     printf("%d\n", current->data);*/
 
-   /* //traversing through linked list
-    struct node * ptr = head;
+    //traversing through linked list
+  /*  struct node * ptr = head;
     int count=0;
     while(ptr != NULL)
     {
@@ -61,25 +62,23 @@ int main()
     }
     printf("size of linked list is %d\n", count);*/
 
-  /* //inserting data into list at the end of linked list
+   //inserting data into list at the end of linked list
     struct node *temp, *p=head;
-
     temp = (struct node*)malloc(sizeof(struct node));
     temp->data = 29;
     temp->link = NULL;
-
     while(p->link != NULL)
     {
         p = p->link;
     }
     p->link = temp;
-    //printf("%d\n", head->link->link->link->data);*/
+    //printf("%d\n", head->link->link->link->data);
 
     //inserting data into list at the begning of the linked list
-  /*  struct node * tem1 = (struct node*)malloc(sizeof(struct node));
+    struct node * tem1 = (struct node*)malloc(sizeof(struct node));
     tem1->data = 61;
     tem1->link = head;
-    head = tem1;*/
+    head = tem1;
 
     /*printf("\n the new linked list is : \n");
     printf("%d\n", head->data);
@@ -87,20 +86,31 @@ int main()
     printf("%d\n", head->link->link->data);
     printf("%d\n", head->link->link->link->data);
     printf("%d\n", head->link->link->link->link->data);*/
-
-    head = at_beg(head, 5);
-    head = at_beg(head, 25);
+    
+    at_beg(&head, 5);
+   // head = at_beg(head, 25);
 
     printlist(head);
     printf("\n");
 
 
-    // deleting from linked-list
-    struct node * p = head;
-    while(p->link->link != NULL)
+    // deleting from linked-list at end
+   struct node * p1 = head;
+    struct node * p2 = head;
+    while(p1->link != NULL)
     {
-        p = p->link;
+        p2 = p1;
+        p1 = p1->link;
     }
-    p->link = NULL;
+    p2->link = NULL;
+    free(p1);
+    p1 = NULL;
+    printlist(head);
+    printf("\n");
+    //deleting at begning
+    struct node *t = head;
+    head = head->link;
+    free(t);
+    t = NULL;
     printlist(head);
 }
