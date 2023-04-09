@@ -33,14 +33,17 @@ void append(struct node * head_ref,int ndata)
 int main()
 {
     struct node * head = (struct node *)malloc(sizeof(struct node));
-    head->data=10;
+    head->data=0;
     head->link=0;
-    append(head,25);
-    append(head,10);
-    append(head,2);
-    append(head,25);
-    append(head,1);
+    int x,y;
+    printf("Enter the number of data you want to append.\n ");
+    scanf("%d", &x);
+    for(int i=0; i<x; i++)
+    {
+        printf("Enter the data you want to append.\n");
+        scanf("%d", &y);
+        append(head,y);
+    }
     print(head);
-
-
 }
+
