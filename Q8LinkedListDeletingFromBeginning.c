@@ -53,7 +53,7 @@ int main(){
     printf("\n");
 
     int x;
-    printf("Enter the number of data you want to delete from the begning.\n");
+    printf("Enter the number of data you want to delete from the beginning.\n");
     scanf("%d", &x);
     for(int i=0; i<x; i++)
     {
