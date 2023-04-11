@@ -11,4 +11,6 @@ int main()
 {
     struct node * head = (struct node *)malloc(sizeof(struct node));
     head->pre = NULL;
+    head->data = 10;
+    head->next = NULL;
 }
