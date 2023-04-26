@@ -72,6 +72,33 @@ struct node* del_atbeg(struct node * head)
     return head;
 }
 
+struct node * del_atPos(struct node* head)
+{
+    int h;
+    struct node * p1 = head->link;
+    struct node * p2 = head;
+    printf("Enter the position of the element you want to delete.\n");
+        scanf("%d", &h);
+        if(h==1)
+        {
+            free(p2);
+            head = p1;
+            p2 = NULL;
+            p1 = NULL;
+        }
+        else{
+            for(int i=1; i<h-1; i++)
+            {
+                p1 = p1->link;
+                p2 = p2->link;
+            }
+            p2->link = p1->link;
+            free(p1);
+            p2 = NULL;
+            p1 = NULL;
+        }
+        return head;
+}
 int main()
 {
     int l,o,a,b,d,e,f,g,h,y,x,count=1;
@@ -165,25 +192,7 @@ do{
         }
         break;
      case 6:
-        printf("Enter the position of the element you want to delete.\n");
-        scanf("%d", &h);
-        if(h==1)
-        {
-            free(p2);
-            head = p1;
-            p2 = NULL;
-            p1 = NULL;
-        }
-        else{
-            for(int i=1; i<h-1; i++)
-            {
-                p1 = p1->link;
-                p2 = p2->link;
-            }
-            p2->link = p1->link;
-            free(p1);
-            p1=NULL;
-        }
+        head = del_atPos(head);
         break;
      case 7:
         printlist(head);
